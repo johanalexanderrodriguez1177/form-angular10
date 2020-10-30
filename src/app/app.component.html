@@ -1,0 +1,63 @@
+<div class="container">
+  <div *ngIf="show" class="alert alert-success mt-2 mb-0">Registro Exitoso.</div>
+</div>
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="card col-md-12">
+      <div class="card-header border-success text-white bg-success">
+        Contacto para Soporte Técnico e Información del Portal
+      </div>
+
+      <div class="card-body border-success">
+        <form [formGroup]="signupForm" (ngSubmit)="enviar()">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputName"><b>Nombre Completo</b></label>
+              <input [(ngModel)]="formulario.name" formControlName="name" type="text" class="form-control" id="inputName" placeholder="Introduzca Nombres y Apellidos">
+              <div *ngIf="signupForm.get('name').hasError('required') && signupForm.get('name').touched" class="alert alert-danger mt-2 mb-0" role="alert">El campo nombre es requerido.</div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="inputCompany"><b>Nombre de la Empresa</b></label>
+              <input [(ngModel)]="formulario.company" formControlName="company" type="text" class="form-control" id="inputCompany" placeholder="Introduzca el Nombre de su Empresa">
+              <div *ngIf="signupForm.get('company').hasError('required') && signupForm.get('company').touched" class="alert alert-danger mt-2 mb-0">El campo empresa es requerido.</div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="inputEmail4"><b>Email</b></label>
+              <input [(ngModel)]="formulario.email" formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Introduzca un correo electrónico">
+              <div *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched" class="alert alert-danger mt-2 mb-0">Ingrese un Email Válido.</div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputPhone"><b>Teléfono</b></label>
+              <input [(ngModel)]="formulario.phone" formControlName="phone" type="text" class="form-control" id="inputPhone" placeholder="Introduzca un Número Teléfonico">
+              <div *ngIf="signupForm.get('phone').hasError('required') && signupForm.get('phone').touched" class="alert alert-danger mt-2 mb-0">El campo Teléfono es requerido.</div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputCategory"><b>Categoría</b></label>
+              <select [(ngModel)]="formulario.category" formControlName="category" id="inputCategory" class="form-control">
+                <option selected>Diseñador</option>
+                <option>Desarrollador</option>
+                <option>QA</option>
+              </select>
+              <div *ngIf="signupForm.get('category').hasError('required') && signupForm.get('category').touched" class="alert alert-danger mt-2 mb-0">El campo categoría es requerido.</div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="inputMensaje"><b>Mensaje</b></label>
+              <textarea [(ngModel)]="formulario.mensaje" formControlName="mensaje" class="form-control" id="inputMensaje" rows="2" placeholder="Introduzca un Mensaje"></textarea>
+              <div *ngIf="signupForm.get('mensaje').hasError('required') && signupForm.get('mensaje').touched" class="alert alert-danger mt-2 mb-0">El campo mensaje es requerido.</div>
+            </div>
+          </div>
+
+          <button [disabled]="signupForm.invalid" type="submit" class="btn btn-success"><i class="far fa-paper-plane"></i>&nbsp; Enviar</button>
+          <button type="reset" class="btn btn-secondary ml-2"><i class="far fa-trash-alt"></i>&nbsp;Limpiar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
